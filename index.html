@@ -2,170 +2,813 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/style.css" />
+
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+
+    <style>
+      * {
+        padding: 0;
+
+        text-decoration: none;
+        border: none;
+        outline: none;
+        scroll-behavior: smooth;
+        font-family: "Poppins", sans-serif;
+      }
+      :root {
+        --bg-color: #080808;
+
+        --second-bg-color: ☐ #131313;
+        --text-color: white;
+
+        --main-color: #00ffee;
+      }
+
+      html {
+        font-size: 60%;
+        overflow-x: hidden;
+      }
+      body {
+        background: var(--bg-color);
+        color: var(--text-color);
+        transition: ease;
+      }
+      .info {
+        font-size: large;
+        
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+      .info-ser {
+        font-size: large;
+        font-weight: 900;
+        padding: 15px;
+       
+        text-align: center;
+      }
+      .header {
+        top: 0;
+        left: 0;
+        width: 100;
+        padding: 4rem 12% 4rem;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 5;
+      }
+      .logo {
+        font-size: 3rem;
+        color: var(--text-color);
+        font-weight: 800;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+      .logo:hover {
+        transform: scale(1.1);
+      }
+      .logo span {
+        text-shadow: 0 0 25px var(--main-color);
+      }
+      .navbar a {
+        font-size: 1.8rem;
+        color: var(--text-color);
+        margin-left: 4rem;
+        font-weight: 500;
+        transition: 0.3s ease;
+        border-bottom: 3px solid transparent;
+      }
+
+      .navbar a:hover,
+      .navbar a.active {
+        color: var(--main-color);
+        border-bottom: 3px solid var(--main-color);
+      }
+      #menu-icon {
+        font-size: 3.6rem;
+        color: var(--main-color);
+        display: none;
+      }
+      section {
+        min-height: 100vh;
+        padding: 10rem 12% 10rem;
+      }
+
+      .home {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15rem;
+      }
+      .home-content {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        text-align: left;
+        justify-content: center;
+        margin-top: 3rem;
+      }
+      span {
+        color: var(--main-color);
+      }
+      .logo span {
+        color: var(--main-color);
+      }
+      .home-content h3 {
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+        font-size: 3.5rem;
+      }
+      .home-content h1 {
+        font-size: 7rem;
+        font-weight: 700;
+        margin-top: 1.5rem;
+        line-height: 1;
+      }
+      .home-img img {
+        position: relative;
+        top: 3rem;
+        width: 32vw;
+        border-radius: 50%;
+        box-shadow: 0 0 25px var(--main-color);
+        cursor: pointer;
+        transition: 0.04s ease-in-out;
+      }
+      .home-img img:hover {
+        box-shadow: 0 0 25px var(--main-color), 0 0 50px var(--main-color),
+          0 0 100px var(--main-color);
+      }
+      .home content p {
+        font-size: 1.5rem;
+        font-weight: 500;
+        line-height: 1.8;
+        max-width: 1000px;
+      }
+      .social-icon a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 4.5rem;
+        height: 4.5rem;
+        background: transparent;
+        border: 2px solid var(--main-color);
+        font-size: 2.5rem;
+        border-radius: 50%;
+        color: var(--main-color);
+        margin: 3rem 1.5rem 3rem 0;
+        transition: 0.3s ease-in-out;
+      }
+      .social-icon a:hover {
+        color: var(--text-color);
+        transform: scale(1.3) translateY(-5px);
+        box-shadow: 0 0 25px var(--main-color);
+        background-color: var(--main-color);
+      }
+      .btn {
+        display: inline-block;
+        padding: 1rem 2.8rem;
+        background: var(--main-color);
+        box-shadow: 0 0 25px var(--main-color);
+        border-radius: 4rem;
+        font-size: 1.6rem;
+        color: black;
+        border: 2px solid transparent;
+        letter-spacing: 0.1rem;
+        font-weight: 600;
+        transition: 0.3 ease-in-out;
+        cursor: pointer;
+      }
+      .topic {
+        font-weight: 900;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 15px;
+        margin-top: 5px;
+      }
+      .btn-hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 50px var(--main-color);
+      }
+      .btn-group {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .btn-group a:nth-of-type(2) {
+        background-color: black;
+        color: var(--main-color);
+        border: 2px solid var(--main-color);
+        box-shadow: 0 0 25px transparent;
+      }
+      .btn-group a:nth-of-type(2):hover {
+        box-shadow: 0 0 25px var(--main-color);
+        background-color: var(--main-color);
+        color: black;
+      }
+      .text-animation {
+        font-size: 34px;
+        font-weight: 600;
+        min-width: 280px;
+      }
+      .text-animation span {
+        position: relative;
+      }
+      .text-animation span::before {
+        content: "Poster Designer";
+        color: var(--main-color);
+        animation: words 20s infinite;
+      }
+      .text-animation span::after {
+        content: "";
+        background-color: var(--bg-color);
+        position: absolute;
+        width: calc(100% + 8px);
+        height: 100%;
+        border-left: 3px solid var(--bg-color);
+        right: -8px;
+        animation: cursor 0.06s infinite, typing 20s steps(14) infinite;
+      }
+      @keyframes cursor {
+        to {
+          border-left: 2px solid var(--main-color);
+        }
+      }
+      @keyframes words {
+        0%,
+        20% {
+          content: "Frontend Designer";
+        }
+        21%,
+        40% {
+          content: "LOGO DESiGNER";
+        }
+        41%,
+        60% {
+          content: "Web Designer";
+        }
+        41%,
+        60% {
+          content: "UI/UX Designer";
+        }
+        61%,
+        80% {
+          content: "WEB DEVELOPER";
+        }
+      }
+      @keyframes typing {
+        10%,
+        15%,
+        30%,
+        35%,
+        50%,
+        55%,
+        70%,
+        75%,
+        90%,
+        95% {
+          width: 0;
+        }
+        5%,
+        20%,
+        25%,
+        40%,
+        45%,
+        60%,
+        65%,
+        80%,
+        85% {
+          width: calc(100% + 8px);
+        }
+      }
+      .heading {
+        font-size: 8rem;
+        text-align: center;
+        margin: 5rem 0;
+      }
+      .education {
+        padding: 100px 15px;
+        background: var(--second-bg-color);
+      }
+      .education h2 {
+        margin-bottom: 5rem;
+      }
+
+      :root {
+        --main-color: #00ffee;
+        --second-bg-color: #131313;
+        --text-color: white;
+      }
+
+      .timeline-items {
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+}
+
+.timeline-items::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: var(--main-color);
+  
+}
+
+.timeline-item {
+  position: relative;
+  padding: 20px;
+  
+  margin-bottom: 40px;
+}
+
+.timeline-item:nth-child(even) {
+  text-align: left;
+  padding-right: calc(50% + 30px);
+}
+
+.timeline-item:nth-child(odd) {
+  text-align: right;
+  padding-left: calc(50% + 30px);
+  
+}
+
+.timeline-content {
+  position: relative;
+  padding: 20px;
+  background: var(--second-bg-color);
+  color: var(--text-color);
+  border-radius: 10px;
+  box-shadow: 0 0 25px var(--main-color);
+  border: 5px solid var(--main-color);
+        transform: scale(1.03);
+  font-size: large;
+  transition: transform 0.3s ease-in-out; /* Add transition property */
+
+}
+.timeline-content:hover {
+  transform: scale(1.05);
+}
+
+
+.timeline-data {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--main-color);
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: larger;
+ 
+}
+
+/* Responsive Design */
+@media screen and (max-width: 767px) {
+  .timeline-items::before {
+    left: 0; /* Align the vertical line to the left */
+  }
+
+  .timeline-item {
+    text-align: left; /* Ensure text alignment is left for all items */
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .timeline-item:nth-child(even),
+  .timeline-item:nth-child(odd) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .timeline-data {
+    left: 0; /* Align the date label to the left */
+    transform: translateX(0);
+  }
+
+  .timeline-dot {
+    left: 0; /* Align the dot to the left */
+    transform: translateX(0);
+  }
+}
+
+      ::-webkit-scrollbar {
+        width: 15px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: var(--main-color);
+      }
+      ::-webkit-scrollbar-track {
+        background-color: var(--bg-color);
+        width: 50px;
+      }
+
+      .services {
+        background: var(--bg-color);
+        color: rgb(255, 240, 240);
+      }
+      .services h2 {
+        margin-bottom: 5rem;
+        color: white;
+      }
+      .services-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        gap: 2.5rem;
+      }
+      .service-box {
+        background-color: var(--second-bg-color);
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        height: 300px;
+        border-radius: 3rem;
+        border: 5px solid transparent;
+        cursor: pointer;
+        transition: 0.4s ease-in-out;
+      }
+      .service-box:hover {
+        background: white;
+        color: #080808;
+        border: 5px solid var(--main-color);
+        transform: scale(1.03);
+      }
+
+      /* Project Section Styles */
+
+      #projects {
+        background-color: var(--bg-color);
+        padding: 20px;
+      }
+
+      .project-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .project {
+        margin: 20px;
+        width: 300px;
+        background-color: var(--second-bg-color);
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 19px;
+      }
+
+      .project img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0;
+      }
+
+      .project h3 {
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      .project p {
+        font-size: 16px;
+        color: #666;
+      }
+
+      .btn {
+        background-color: var(--second-bg-color);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out; /* added transition effect */
+      }
+
+      .btn:hover {
+        background-color: var(--main-color); /* added hover state */
+      }
+
+      .pro-topic {
+        text-align: center;
+        color: white;
+        font-size: large;
+        font-weight: bold;
+      }
+
+      .info-pro {
+        text-align: center;
+        color: #424141;
+        padding: 15px;
+      }
+      /* Footer Section Styles */
+
+      #footer {
+        background-color: var(--bg-color);
+        padding: 20px;
+        text-align: center;
+        color: #666;
+      }
+
+      #footer p {
+        margin-bottom: 0;
+      }
+
+      @media screen and (max-width: 767px) {
+  /* Adjustments for smaller screens */
+
+  .header {
+    padding: 2rem 5%;
+  }
+
+  .logo {
+    font-size: 2rem;
+  }
+
+  
+  .home {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-content {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .home-content h1 {
+    font-size: 4rem;
+  }
+
+  .home-img img {
+    width: 80%;
+    max-width: 300px;
+    margin-top: 2rem;
+  }
+
+  .education,
+  .services,
+  #projects {
+    padding: 4rem 5%;
+  }
+
+  .services-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .project {
+    width: calc(100% - 40px);
+  }
+
+  .project img {
+    height: 200px;
+  }
+
+  /* Add any other mobile-specific styles here */
+}
+/* Add this to arrange nav items horizontally on large screens */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.navbar a {
+  margin-right: 20px;
+}
+
+/* Add this to arrange nav items vertically on small screens */
+@media only screen and (max-width: 768px) {
+ .navbar {
+    flex-direction: column;
+    align-items: center;
+    display: none; /* hide navbar by default on small screens */
+  }
+ .navbar a {
+    margin-bottom: 20px;
+  }
+  #menu-icon {
+    display: block;
+  }
+}
+
+ 
+.navbar.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar.active a {
+  display: block;
+  margin-bottom: 20px;
+}
+
+
+    </style>
   </head>
   <body>
     <header class="header">
-      <a href="#home" class="logo">mustakim <span> sawod </span></a>
-
-      <i class="bx bx-menu" id="menu-icon"></i>
-
+      <a class="logo" href="#home">Mustakim <span> Sawod </span></a>
+    
+      <i id="menu-icon" class="bx bx-menu"></i>
+    
       <nav class="navbar">
-        <a href="#home" class="active">home</a>
-        <a href="#education">education</a>
-        <a href="#services">services</a>
+        <a class="active" href="#home">Home</a>
+        <a href="#Education">Education</a>
+        <a href="#services">Services</a>
         <a href="#projects">Projects</a>
-        <a href="#contect">contact</a>
+        <a href="#contect">Contact</a>
       </nav>
     </header>
     <section class="home" id="home">
       <div class="home-content">
-        <h1>it's <span>mustakim</span> <span>sawod</span></h1>
+        <h1>it's <span>Mustakim</span> <span>Sawod</span></h1>
         <h3 class="text-animation">I'm a <span></span></h3>
         <p class="info">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-          consectetur laudantium optio id libero eligendi reiciendis quia nulla?
-          Assumenda repellat perferendis quia molestiae, vero non asperiores
-          maxime expedita. Ullam, cumque. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Eos magnam soluta iure sapiente, quae qui vitae
-          quasi. Rerum fugit ipsum quaerat quidem esse corporis blanditiis
-          dolorem corrupti, obcaecati, dolor cum.
+          I am Mustakim Sawod, a Student and Junior Web Developer. Currently
+          studying in class Eight and age is 13. As a junior web developer, my
+          goal is to gain hands-on experience in various aspects of web
+          development, including front-end and back-end technologies. I aim to
+          continue learning and improving my skills in HTML, CSS, and
+          JavaScript.
         </p>
 
         <div class="social-icon">
           <a href="#"><i class="bx bxl-linkedin" style="color: #ffffff"></i></a>
           <a href="#"><i class="bx bxl-github"></i></a>
-          <a href="#"><i class="bx bxl-facebook"></i></a>
+          <a href="https://www.facebook.com/"
+            ><i class="bx bxl-facebook"></i
+          ></a>
         </div>
 
         <div class="btn-group">
           <a href="#" class="btn">HIRE</a>
-          <a href="#contect" class="btn">contact</a>
+          <a href="#contect" class="btn">Contact</a>
         </div>
       </div>
       <div class="home-img">
-        <img src="resources/44d7c72db8f132a8ceb32b7935294f59.jpg" alt="" />
+        <img src="resources/IMG_20230819_174850.jpg" alt="" />
       </div>
     </section>
-    <section class="education" id="education">
-    <h2 class="heading">education</h2>
-
-    <div class="timeline-items">
-      <!-- Timeline item 1 -->
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-data">2018</div>
-        <div class="timeline-content">
-          <h3>Graduated from High School</h3>
-          <p class="info">Achieved 90% in final exams. Served as Student Body President.</p>
+    <section class="education" id="Education">
+      <h2 class="heading">Education</h2>
+    
+      <div class="timeline-items">
+        <!-- Timeline item 1 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-data">2020</div>
+          <div class="timeline-content">
+            <h3>Harbang Kusum Koli Shiksha Niketon</h3>
+            <p class="info">I passed out my primary level from here.</p>
+          </div>
+        </div>
+    
+        <!-- Timeline item 2 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-data">2020</div>
+          <div class="timeline-content">
+            <h3>Chakaria Korak Biddyapith (CKB)</h3>
+            <p class="info">I studied here for 1 year (class 6).</p>
+          </div>
+        </div>
+    
+        <!-- Timeline item 3 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-data">2023</div>
+          <div class="timeline-content">
+            <h3>Harbang Union High School</h3>
+            <p class="info">I passed out of seventh grade from this school and I am currently in class 8.</p>
+          </div>
         </div>
       </div>
+    </section>
+    
 
-      <!-- Timeline item 2 -->
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-data">2020</div>
-        <div class="timeline-content">
-          <h3>Completed Bachelor's Degree</h3>
-          <p class="info">Graduated with a Bachelor's Degree in Computer Science.</p>
+    <section class="services" id="services">
+      <h2 class="heading">Services</h2>
+
+      <div class="services-container">
+        <div class="service-box">
+          <div class="service-info">
+            <h4 class="topic">Frontend developer</h4>
+            <p class="info-ser">
+              
+            </p>
+          </div>
+        </div>
+
+        <div class="service-box">
+          <div class="service-info">
+            <h4 class="topic">power-point Design</h4>
+            <p class="info-ser">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut
+              similique laboriosam nobis soluta delectus veniam at sint
+              assumenda blanditiis tempora provident accusantium commodi
+              distinctio iure fugiat repudiandae architecto, nemo obcaecati.
+              Nihil earum placeat
+            </p>
+          </div>
+        </div>
+
+        <div class="service-box">
+          <div class="service-info">
+            <h4 class="topic">Frontend design</h4>
+            <p class="info-ser">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut
+              similique laboriosam nobis soluta delectus veniam at sint
+              assumenda blanditiis tempora provident accusantium commodi
+              distinctio iure fugiat repudiandae architecto, nemo obcaecati.
+              Nihil earum placeat
+            </p>
+          </div>
+        </div>
+
+        <div class="service-box">
+          <div class="service-info">
+            <h4 class="topic">poster design</h4>
+            <p class="info-ser">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut
+              similique laboriosam nobis soluta delectus veniam at sint
+              assumenda blanditiis tempora provident accusantium commodi
+              distinctio iure fugiat repudiandae architecto, nemo obcaecati.
+              Nihil earum placeat
+            </p>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Timeline item 3 -->
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-data">2023</div>
-        <div class="timeline-content">
-          <h3>Started a Master's Degree</h3>
-          <p class="info">Enrolled in a Master's program in Software Engineering.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="services" id="services">
-    <h2 class="heading">Services</h2>
-
-    <div class="services-container">
-      <div class="service-box">
-        <div class="service-info">
-          <h4 class="topic">Ui design</h4>
-          <p class="info-ser">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut similique laboriosam nobis soluta delectus veniam at sint assumenda blanditiis tempora provident accusantium commodi distinctio iure fugiat repudiandae architecto, nemo obcaecati. Nihil earum placeat 
+    <!-- Project Section -->
+    <section id="projects">
+      <h2 class="heading">Projects</h2>
+      <ul class="project-list">
+        <!-- Project 1 -->
+        <li class="project">
+          <h3 class="pro-topic">Project 1: Website Redesign</h3>
+          <p class="info-pro">
+            A redesign of a existing website to improve user experience and
+            modernize the design.
           </p>
-        </div>
-      </div>
+          <a href="#" class="btn">View Project</a>
+        </li>
 
-      <div class="service-box">
-        <div class="service-info">
-          <h4 class="topic">Ui design</h4>
-          <p class="info-ser">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut similique laboriosam nobis soluta delectus veniam at sint assumenda blanditiis tempora provident accusantium commodi distinctio iure fugiat repudiandae architecto, nemo obcaecati. Nihil earum placeat 
+        <!-- Project 2 -->
+        <li class="project">
+          <h3 class="pro-topic">Project 2: E-commerce Website</h3>
+          <p class="info-pro">
+            A redesign of a existing website to improve user experience and
+            modernize the design.
           </p>
-        </div>
-      </div>
+          <a href="#" class="btn">View Project</a>
+        </li>
 
-      <div class="service-box">
-        <div class="service-info">
-          <h4 class="topic">Ui design</h4>
-          <p class="info-ser">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut similique laboriosam nobis soluta delectus veniam at sint assumenda blanditiis tempora provident accusantium commodi distinctio iure fugiat repudiandae architecto, nemo obcaecati. Nihil earum placeat 
+        <!-- Project 3 -->
+        <li class="project">
+          <h3 class="pro-topic">Project 3: Responsive Design</h3>
+          <p class="info-pro">
+            A redesign of a existing website to improve user experience and
+            modernize the design.
           </p>
-        </div>
-      </div>
+          <a href="#" class="btn">View Project</a>
+        </li>
 
-      <div class="service-box">
-        <div class="service-info">
-          <h4 class="topic">Ui design</h4>
-          <p class="info-ser">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut similique laboriosam nobis soluta delectus veniam at sint assumenda blanditiis tempora provident accusantium commodi distinctio iure fugiat repudiandae architecto, nemo obcaecati. Nihil earum placeat 
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- Add more projects here -->
+      </ul>
+    </section>
+    <!-- Footeaar Section -->
+    <footer id="footer">
+      <p>&copy; 2023 Your Name. All rights reserved.</p>
+    </footer>
 
-  <!-- Project Section -->
-<section id="projects">
-  <h2 class="heading">Projects</h2>
-  <ul class="project-list">
-    <!-- Project 1 -->
-    <li class="project">
-      <h3 class="pro-topic">Project 1: Website Redesign</h3>
-      <p class="info-pro">A redesign of a existing website to improve user experience and modernize the design.</p>
-      <a href="#" class="btn">View Project</a>
-    </li>
+    <script>
+const menuIcon = document.getElementById('menu-icon');
+const navbar = document.querySelector('.navbar');
 
-    <!-- Project 2 -->
-    <li class="project">
-      <h3 class="pro-topic">Project 2: E-commerce Website</h3>
-      <p class="info-pro">A redesign of a existing website to improve user experience and modernize the design.</p>
-      <a href="#" class="btn">View Project</a>
-    </li>
+menuIcon.addEventListener('click', () => {
+  navbar.classList.toggle('active');
+});
 
-    <!-- Project 3 -->
-    <li class="project">
-      <h3 class="pro-topic">Project 3: Responsive Design</h3>
-      <p class="info-pro">A redesign of a existing website to improve user experience and modernize the design.</p>
-      <a href="#" class="btn">View Project</a>
-    </li>
 
-    <!-- Add more projects here -->
-
-  </ul>
-</section>
-<!-- Footer Section -->
-<footer id="footer">
-  <p>&copy; 2023 Your Name. All rights reserved.</p>
-</footer>
-
-    <script src="script.js"></script>
+    </script>
   </body>
 </html>
